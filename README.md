@@ -13,18 +13,7 @@ RepoSense AI is a Chrome Extension that adds an intelligent sidebar to any GitHu
 
 ## 🎬 Demo Video
 
-<!-- TODO: Replace the link below with your actual demo video -->
-> 🔗 **[Watch the Demo Video](YOUR_DEMO_VIDEO_LINK_HERE)** — See RepoSense AI in action!
-
-<!--
-  Options for hosting your demo video:
-  - YouTube: https://www.youtube.com/watch?v=YOUR_VIDEO_ID
-  - Loom: https://www.loom.com/share/YOUR_VIDEO_ID
-  - GitHub: Upload as a .mp4 in a GitHub issue and paste the URL
-  
-  To embed directly, replace the link above with:
-  [![Demo Video](screenshots/sidebar-demo.png)](YOUR_DEMO_VIDEO_LINK_HERE)
--->
+> 🔗 **[Watch the Demo Video](https://youtu.be/tNYUkSfZkPs)** — See RepoSense AI in action!
 
 ---
 
