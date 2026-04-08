@@ -1,0 +1,708 @@
+/* ============================================================
+   RepoSense AI — Content Script Styles
+   Injected into GitHub pages. All selectors scoped under
+   #reposense-* to avoid clashing with GitHub's styles.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Floating Trigger Button ---------- */
+#reposense-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99999;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9, #5b21b6);
+  color: #fff;
+  box-shadow:
+    0 4px 24px rgba(124, 58, 237, 0.45),
+    0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s cubic-bezier(.4,0,.2,1),
+              box-shadow 0.2s ease,
+              opacity 0.2s ease;
+  animation: reposense-fab-entrance 0.5s cubic-bezier(.34,1.56,.64,1) both;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+#reposense-fab:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 8px 32px rgba(124, 58, 237, 0.55),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#reposense-fab:active {
+  transform: scale(0.96);
+}
+
+#reposense-fab.reposense-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6);
+}
+
+@keyframes reposense-fab-entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.4) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Tooltip on hover */
+#reposense-fab::after {
+  content: 'Explain Repo';
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1c1c2e;
+  color: #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+#reposense-fab:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Overlay (dims page) ---------- */
+#reposense-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+  z-index: 999998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+#reposense-overlay.reposense-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Sidebar Container ---------- */
+#reposense-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  z-index: 999999;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0d1117;
+  border-left: 1px solid rgba(139, 148, 158, 0.15);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(.22,1,.36,1);
+  overflow: hidden;
+}
+
+#reposense-sidebar.reposense-open {
+  transform: translateX(0);
+}
+
+/* ---------- Header ---------- */
+#reposense-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(99, 37, 204, 0.08));
+  border-bottom: 1px solid rgba(139, 148, 158, 0.12);
+  flex-shrink: 0;
+}
+
+#reposense-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#reposense-header-title .reposense-logo-icon {
+  font-size: 22px;
+  filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.5));
+}
+
+#reposense-header-title h1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e6edf3;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+#reposense-header-title .reposense-repo-name {
+  font-size: 12px;
+  color: #8b949e;
+  font-weight: 400;
+  display: block;
+  margin-top: 2px;
+}
+
+.reposense-close-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: #8b949e;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.reposense-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e6edf3;
+}
+
+/* ---------- Actions Bar ---------- */
+#reposense-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(139, 148, 158, 0.08);
+  flex-shrink: 0;
+}
+
+.reposense-action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid rgba(139, 148, 158, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  color: #8b949e;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.reposense-action-btn:hover {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.3);
+  color: #c4b5fd;
+}
+
+.reposense-action-btn.reposense-copied {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+/* ---------- Scrollable Content ---------- */
+#reposense-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 148, 158, 0.2) transparent;
+}
+
+#reposense-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+#reposense-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#reposense-content::-webkit-scrollbar-thumb {
+  background: rgba(139, 148, 158, 0.2);
+  border-radius: 3px;
+}
+
+#reposense-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 148, 158, 0.35);
+}
+
+/* ---------- Section Cards ---------- */
+.reposense-section {
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(139, 148, 158, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.reposense-section:hover {
+  border-color: rgba(139, 148, 158, 0.2);
+}
+
+.reposense-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.reposense-section-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.reposense-section-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reposense-section-icon {
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(124, 58, 237, 0.1);
+  flex-shrink: 0;
+}
+
+.reposense-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  letter-spacing: -0.1px;
+}
+
+.reposense-section-chevron {
+  font-size: 12px;
+  color: #8b949e;
+  transition: transform 0.25s ease;
+}
+
+.reposense-section.reposense-collapsed .reposense-section-chevron {
+  transform: rotate(-90deg);
+}
+
+.reposense-section-body {
+  padding: 0 16px 14px;
+  color: #c9d1d9;
+  font-size: 13px;
+  line-height: 1.65;
+  max-height: 600px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.25s ease;
+  opacity: 1;
+}
+
+.reposense-section.reposense-collapsed .reposense-section-body {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+/* ---------- Summary Text ---------- */
+.reposense-summary-text {
+  color: #c9d1d9;
+  line-height: 1.7;
+}
+
+/* ---------- Tech Stack Pills ---------- */
+.reposense-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reposense-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(99, 37, 204, 0.08));
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c4b5fd;
+  letter-spacing: 0.1px;
+  transition: all 0.15s ease;
+}
+
+.reposense-pill:hover {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(99, 37, 204, 0.14));
+  border-color: rgba(124, 58, 237, 0.35);
+}
+
+/* ---------- Folder Structure Table ---------- */
+.reposense-folder-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reposense-folder-table tr {
+  border-bottom: 1px solid rgba(139, 148, 158, 0.06);
+}
+
+.reposense-folder-table tr:last-child {
+  border-bottom: none;
+}
+
+.reposense-folder-table td {
+  padding: 8px 0;
+  vertical-align: top;
+}
+
+.reposense-folder-name {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 12px;
+  color: #79c0ff;
+  white-space: nowrap;
+  padding-right: 16px;
+  font-weight: 500;
+}
+
+.reposense-folder-purpose {
+  color: #8b949e;
+  font-size: 12px;
+}
+
+/* ---------- Key Files List ---------- */
+.reposense-key-files {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reposense-key-file {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(139, 148, 158, 0.06);
+}
+
+.reposense-key-file:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reposense-key-file-name {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 12px;
+  color: #79c0ff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.reposense-key-file-name::before {
+  content: '📄';
+  font-size: 12px;
+}
+
+.reposense-key-file-reason {
+  color: #8b949e;
+  font-size: 12px;
+  line-height: 1.5;
+  padding-left: 22px;
+}
+
+/* ---------- Getting Started Steps ---------- */
+.reposense-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step-counter;
+}
+
+.reposense-step {
+  counter-increment: step-counter;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(139, 148, 158, 0.06);
+}
+
+.reposense-step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reposense-step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.reposense-step-text {
+  color: #c9d1d9;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.reposense-step-text code {
+  background: rgba(110, 118, 129, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
+  font-size: 12px;
+  color: #79c0ff;
+}
+
+/* ---------- Complexity Badge ---------- */
+.reposense-complexity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reposense-complexity-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.reposense-complexity-badge.reposense-beginner {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.reposense-complexity-badge.reposense-intermediate {
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #facc15;
+}
+
+.reposense-complexity-badge.reposense-advanced {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.reposense-complexity-reason {
+  color: #8b949e;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------- Loading Skeleton ---------- */
+.reposense-skeleton {
+  padding: 20px;
+}
+
+.reposense-skeleton-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.reposense-skeleton-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: reposense-shimmer 1.5s infinite;
+}
+
+.reposense-skeleton-title-group {
+  flex: 1;
+}
+
+.reposense-skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: reposense-shimmer 1.5s infinite;
+  margin-bottom: 8px;
+}
+
+.reposense-skeleton-line:last-child {
+  margin-bottom: 0;
+}
+
+.reposense-skeleton-line.reposense-w60 { width: 60%; }
+.reposense-skeleton-line.reposense-w80 { width: 80%; }
+.reposense-skeleton-line.reposense-w40 { width: 40%; }
+.reposense-skeleton-line.reposense-w100 { width: 100%; }
+.reposense-skeleton-line.reposense-w70 { width: 70%; }
+
+.reposense-skeleton-block {
+  margin-bottom: 20px;
+}
+
+.reposense-skeleton-block-title {
+  width: 40%;
+  height: 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: reposense-shimmer 1.5s infinite;
+}
+
+.reposense-skeleton-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.reposense-skeleton-pill {
+  width: 70px;
+  height: 28px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: reposense-shimmer 1.5s infinite;
+}
+
+.reposense-skeleton-pill:nth-child(2) { width: 90px; animation-delay: 0.1s; }
+.reposense-skeleton-pill:nth-child(3) { width: 60px; animation-delay: 0.2s; }
+.reposense-skeleton-pill:nth-child(4) { width: 80px; animation-delay: 0.3s; }
+
+@keyframes reposense-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.reposense-loading-status {
+  text-align: center;
+  padding: 16px 0 0;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.reposense-loading-status .reposense-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: reposense-spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes reposense-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Error State ---------- */
+.reposense-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.reposense-error-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
+
+.reposense-error-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 8px;
+}
+
+.reposense-error-message {
+  font-size: 13px;
+  color: #8b949e;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.reposense-error .reposense-retry-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.reposense-error .reposense-retry-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+}
+
+/* ---------- Powered-by Footer ---------- */
+#reposense-footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(139, 148, 158, 0.08);
+  text-align: center;
+  font-size: 11px;
+  color: #484f58;
+  flex-shrink: 0;
+}
+
+#reposense-footer a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+/* ---------- Responsive (narrow viewports) ---------- */
+@media (max-width: 768px) {
+  #reposense-sidebar {
+    width: 100vw;
+  }
+}

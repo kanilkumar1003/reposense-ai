@@ -1,0 +1,316 @@
+/* ============================================================
+   RepoSense AI — Popup Styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Container ---------- */
+.popup-container {
+  padding: 20px;
+}
+
+/* ---------- Header ---------- */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(139, 148, 158, 0.12);
+}
+
+.popup-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.popup-logo-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.5));
+}
+
+.popup-logo h1 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  background: linear-gradient(135deg, #c4b5fd, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-version {
+  font-size: 11px;
+  color: #484f58;
+  font-weight: 500;
+}
+
+/* ---------- Sections ---------- */
+.popup-section {
+  margin-bottom: 18px;
+}
+
+.popup-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  margin-bottom: 8px;
+}
+
+.popup-label-icon {
+  font-size: 14px;
+}
+
+.popup-optional {
+  font-size: 11px;
+  color: #484f58;
+  font-weight: 400;
+}
+
+.popup-free-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #4ade80;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+/* ---------- Inputs ---------- */
+.popup-input-group {
+  display: flex;
+  gap: 6px;
+}
+
+.popup-input-group input {
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(139, 148, 158, 0.2);
+  border-radius: 8px;
+  color: #e6edf3;
+  font-size: 13px;
+  font-family: 'SFMono-Regular', 'Consolas', monospace;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.popup-input-group input:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.popup-input-group input::placeholder {
+  color: #484f58;
+}
+
+.popup-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(139, 148, 158, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  color: #8b949e;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.popup-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 148, 158, 0.35);
+}
+
+.popup-hint {
+  font-size: 11px;
+  color: #484f58;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.popup-hint a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+.popup-hint a:hover {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+/* ---------- Toggle Switch ---------- */
+.popup-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-toggle-row .popup-label {
+  margin-bottom: 0;
+}
+
+.popup-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.popup-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.popup-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(139, 148, 158, 0.2);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.popup-slider::before {
+  content: '';
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background: #8b949e;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+}
+
+.popup-switch input:checked + .popup-slider {
+  background: rgba(124, 58, 237, 0.25);
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+.popup-switch input:checked + .popup-slider::before {
+  transform: translateX(20px);
+  background: #7c3aed;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+}
+
+/* ---------- Save Button ---------- */
+.popup-save-btn {
+  width: 100%;
+  padding: 11px 0;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: 0.1px;
+}
+
+.popup-save-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.35);
+}
+
+.popup-save-btn:active {
+  transform: scale(0.98);
+}
+
+.popup-save-status {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 8px;
+  min-height: 18px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.popup-save-status.success {
+  color: #4ade80;
+}
+
+.popup-save-status.error {
+  color: #f87171;
+}
+
+/* ---------- Divider ---------- */
+.popup-divider {
+  border: none;
+  border-top: 1px solid rgba(139, 148, 158, 0.1);
+  margin: 20px 0;
+}
+
+/* ---------- How to Use ---------- */
+.popup-how-to h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e6edf3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.popup-how-to ol {
+  padding-left: 20px;
+  color: #8b949e;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.popup-how-to strong {
+  color: #c9d1d9;
+}
+
+/* ---------- Footer ---------- */
+.popup-footer {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(139, 148, 158, 0.08);
+  margin-top: 16px;
+  font-size: 11px;
+  color: #484f58;
+}
+
+.popup-footer a {
+  color: #7c3aed;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.popup-footer a:hover {
+  color: #a78bfa;
+}

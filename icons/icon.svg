@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#5b21b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  <!-- Brain shape -->
+  <g transform="translate(64,60)" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left hemisphere -->
+    <path d="M-4,-28 C-18,-28 -30,-18 -30,-4 C-30,2 -28,8 -24,12 C-28,16 -28,24 -22,28 C-16,32 -8,30 -4,26"/>
+    <path d="M-4,-28 C-4,-28 -18,-20 -18,-8 C-18,4 -4,8 -4,8"/>
+    <!-- Right hemisphere -->
+    <path d="M4,-28 C18,-28 30,-18 30,-4 C30,2 28,8 24,12 C28,16 28,24 22,28 C16,32 8,30 4,26"/>
+    <path d="M4,-28 C4,-28 18,-20 18,-8 C18,4 4,8 4,8"/>
+    <!-- Stem -->
+    <line x1="0" y1="8" x2="0" y2="26"/>
+  </g>
+  <!-- Magnifying glass -->
+  <g transform="translate(90,88)" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round">
+    <circle cx="0" cy="0" r="10" fill="rgba(255,255,255,0.1)"/>
+    <line x1="7" y1="7" x2="16" y2="16"/>
+  </g>
+</svg>

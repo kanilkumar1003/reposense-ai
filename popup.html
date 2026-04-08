@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepoSense AI Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <div class="popup-logo">
+        <span class="popup-logo-icon">🧠</span>
+        <div>
+          <h1>RepoSense AI</h1>
+          <span class="popup-version">v1.0.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="popup-section">
+      <label class="popup-label" for="groq-api-key">
+        <span class="popup-label-icon">🔑</span>
+        Groq API Key <span class="popup-free-badge">FREE</span>
+      </label>
+      <div class="popup-input-group">
+        <input
+          type="password"
+          id="groq-api-key"
+          placeholder="gsk_..."
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="toggle-key-visibility" class="popup-toggle-btn" title="Show/hide key">
+          👁️
+        </button>
+      </div>
+      <p class="popup-hint">Free: 30 req/min, 14,400 req/day. <a href="https://console.groq.com/keys" target="_blank">Get free key →</a></p>
+    </div>
+
+    <div class="popup-section">
+      <label class="popup-label" for="github-token">
+        <span class="popup-label-icon">🐙</span>
+        GitHub Token <span class="popup-optional">(optional)</span>
+      </label>
+      <div class="popup-input-group">
+        <input
+          type="password"
+          id="github-token"
+          placeholder="ghp_..."
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button id="toggle-token-visibility" class="popup-toggle-btn" title="Show/hide token">
+          👁️
+        </button>
+      </div>
+      <p class="popup-hint">Increases GitHub API rate limit from 60 to 5,000 req/hr.</p>
+    </div>
+
+    <div class="popup-section">
+      <div class="popup-toggle-row">
+        <label class="popup-label" for="auto-open">
+          <span class="popup-label-icon">⚡</span>
+          Auto-open on repo pages
+        </label>
+        <label class="popup-switch">
+          <input type="checkbox" id="auto-open">
+          <span class="popup-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Save -->
+    <button id="save-btn" class="popup-save-btn">
+      Save Settings
+    </button>
+    <div id="save-status" class="popup-save-status"></div>
+
+    <!-- Divider -->
+    <hr class="popup-divider">
+
+    <!-- How to use -->
+    <div class="popup-section popup-how-to">
+      <h2>
+        <span class="popup-label-icon">💡</span>
+        How to Use
+      </h2>
+      <ol>
+        <li>Get a free Groq API key from <a href="https://console.groq.com/keys" target="_blank">console.groq.com</a></li>
+        <li>Navigate to any <strong>public GitHub repository</strong></li>
+        <li>Click the floating <strong>🔍 button</strong> (bottom-right)</li>
+      </ol>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <a href="https://github.com" target="_blank">GitHub</a> ·
+      <a href="https://console.groq.com/keys" target="_blank">Get Groq Key (Free)</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
