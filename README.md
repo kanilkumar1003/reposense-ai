@@ -11,6 +11,23 @@ RepoSense AI is a Chrome Extension that adds an intelligent sidebar to any GitHu
 
 ---
 
+## 🎬 Demo Video
+
+<!-- TODO: Replace the link below with your actual demo video -->
+> 🔗 **[Watch the Demo Video](YOUR_DEMO_VIDEO_LINK_HERE)** — See RepoSense AI in action!
+
+<!--
+  Options for hosting your demo video:
+  - YouTube: https://www.youtube.com/watch?v=YOUR_VIDEO_ID
+  - Loom: https://www.loom.com/share/YOUR_VIDEO_ID
+  - GitHub: Upload as a .mp4 in a GitHub issue and paste the URL
+  
+  To embed directly, replace the link above with:
+  [![Demo Video](screenshots/sidebar-demo.png)](YOUR_DEMO_VIDEO_LINK_HERE)
+-->
+
+---
+
 ## 📸 Screenshots
 
 ### AI Sidebar in Action
@@ -85,33 +102,6 @@ Get a **free** Groq API key (no credit card required):
 1. Navigate to any public GitHub repository
 2. Click the **🔍** floating button (bottom-right corner)
 3. The AI sidebar slides in with a complete repo analysis!
-
----
-
-## 🔍 Usage Examples
-
-### Example 1: Analyzing a React Project
-Navigate to a popular React repository like `facebook/react`:
-1. The floating 🔍 button appears in the bottom-right corner
-2. Click it — the sidebar opens with a skeleton loading animation
-3. Within seconds, you get:
-   - **Summary**: "React is a JavaScript library for building user interfaces..."
-   - **Tech Stack**: `JavaScript`, `React`, `Jest`, `Flow`, `Rollup`
-   - **Key Files**: `packages/react/src/React.js` — "Main entry point for the React package"
-   - **Complexity**: 🔴 Advanced — "Monorepo with custom reconciler, fiber architecture..."
-
-### Example 2: Understanding an Unfamiliar Repo
-Found an interesting project on GitHub but not sure where to start?
-1. Open the repo page → click 🔍
-2. Read the **"What This Does"** section for a quick overview
-3. Check **"Key Files to Read"** to know exactly where to start reading code
-4. Follow the **"Getting Started"** steps to run it locally
-
-### Example 3: Copy & Share
-After analyzing a repo:
-1. Click **📋 Copy Summary** — the full analysis is copied as formatted Markdown
-2. Paste it in Slack, Notion, or your notes
-3. Share it with your team to onboard them faster
 
 ---
 
