@@ -11,6 +11,25 @@ RepoSense AI is a Chrome Extension that adds an intelligent sidebar to any GitHu
 
 ---
 
+## 📸 Screenshots
+
+### AI Sidebar in Action
+> The sidebar slides in from the right when you click the floating button on any GitHub repo page.
+
+![RepoSense AI Sidebar](screenshots/sidebar-demo.png)
+
+### Extension Settings
+> Configure your free Groq API key and optional GitHub token in the popup.
+
+![Extension Settings](screenshots/popup-settings.png)
+
+### Floating Trigger Button
+> A non-intrusive floating button appears on every GitHub repo page.
+
+![Floating Button](screenshots/floating-button.png)
+
+---
+
 ## ✨ Features
 
 | Feature | Description |
@@ -69,6 +88,90 @@ Get a **free** Groq API key (no credit card required):
 
 ---
 
+## 🔍 Usage Examples
+
+### Example 1: Analyzing a React Project
+Navigate to a popular React repository like `facebook/react`:
+1. The floating 🔍 button appears in the bottom-right corner
+2. Click it — the sidebar opens with a skeleton loading animation
+3. Within seconds, you get:
+   - **Summary**: "React is a JavaScript library for building user interfaces..."
+   - **Tech Stack**: `JavaScript`, `React`, `Jest`, `Flow`, `Rollup`
+   - **Key Files**: `packages/react/src/React.js` — "Main entry point for the React package"
+   - **Complexity**: 🔴 Advanced — "Monorepo with custom reconciler, fiber architecture..."
+
+### Example 2: Understanding an Unfamiliar Repo
+Found an interesting project on GitHub but not sure where to start?
+1. Open the repo page → click 🔍
+2. Read the **"What This Does"** section for a quick overview
+3. Check **"Key Files to Read"** to know exactly where to start reading code
+4. Follow the **"Getting Started"** steps to run it locally
+
+### Example 3: Copy & Share
+After analyzing a repo:
+1. Click **📋 Copy Summary** — the full analysis is copied as formatted Markdown
+2. Paste it in Slack, Notion, or your notes
+3. Share it with your team to onboard them faster
+
+---
+
+## 🛠️ Technical Details
+
+### APIs Used
+
+| API | Purpose | Auth Required | Rate Limits |
+|-----|---------|---------------|-------------|
+| **[Groq API](https://groq.com)** | AI inference (Llama 3.3 70B) | API key (free) | 30 req/min, 14,400 req/day |
+| **[GitHub REST API](https://docs.github.com/en/rest)** | Fetch repo data, README, languages | Optional token | 60 req/hr (unauth) / 5,000 req/hr (auth) |
+
+### GitHub API Endpoints Used
+
+```
+GET /repos/:owner/:repo              → Repo metadata (description, stars, topics)
+GET /repos/:owner/:repo/contents/    → Root directory listing
+GET /repos/:owner/:repo/readme       → README content (base64 encoded)
+GET /repos/:owner/:repo/languages    → Language breakdown by bytes
+GET /repos/:owner/:repo/contents/:path → Config file contents
+```
+
+### Technologies & Tools
+
+| Technology | Usage |
+|-----------|-------|
+| **Chrome Manifest V3** | Extension platform with service workers |
+| **Vanilla JavaScript** | All UI and logic — zero dependencies |
+| **CSS3** | Dark theme, animations, skeleton loading, transitions |
+| **Groq Cloud** | Lightning-fast inference via custom LPU hardware |
+| **Llama 3.3 70B** | Meta's open-source LLM for code analysis |
+| **Chrome Storage API** | Secure local storage for API keys and settings |
+| **Chrome Messaging API** | Communication between content script ↔ service worker |
+
+### AI Prompt Engineering
+
+The extension builds a structured prompt from repo data and requests a **strict JSON response** with these fields:
+
+```json
+{
+  "summary": "2-3 sentence project description",
+  "techStack": ["React", "TypeScript", "Node.js"],
+  "folderStructure": [{ "name": "src", "purpose": "Source code" }],
+  "keyFiles": [{ "file": "index.js", "reason": "Entry point" }],
+  "gettingStarted": ["Clone the repo", "Run npm install"],
+  "complexityScore": "Intermediate",
+  "complexityReason": "Uses React with custom hooks"
+}
+```
+
+The Groq API is called with `response_format: { type: "json_object" }` to enforce valid JSON output.
+
+### Config Files Auto-Detected
+
+The extension looks for these files to provide better analysis:
+
+`package.json` · `requirements.txt` · `Gemfile` · `go.mod` · `pom.xml` · `Dockerfile` · `Makefile` · `.env.example` · `Cargo.toml` · `composer.json` · `build.gradle` · `tsconfig.json` · `pyproject.toml` · `setup.py` · `CMakeLists.txt`
+
+---
+
 ## 🏗️ Architecture
 
 ```
@@ -86,6 +189,7 @@ reposense-ai/
 │   ├── icon48.png
 │   ├── icon128.png
 │   └── icon.svg             # Source SVG
+├── screenshots/             # README images
 └── utils/
     └── githubFetcher.js     # GitHub REST API wrapper
 ```
